@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Login from "./views/auth/Login";
 import Home from "./views/Home";
 import Register from "./views/auth/Register";
+import PostDetail from "./views/PostDetail";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ const AppNavigator = () => {
 						headerShown: false,
 					}}
 				/>
+				<Screen name="PostDetail" component={PostDetail} />
 			</Navigator>
 		</NavigationContainer>
 	);

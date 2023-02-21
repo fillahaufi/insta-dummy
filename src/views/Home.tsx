@@ -3,7 +3,6 @@ import { BottomNavigation } from "react-native-paper";
 import Feed from "./Feed";
 import Profile from "./Profile";
 import Search from "./Search";
-import myTheme from "../styles/global";
 
 const Home = () => {
 	const [index, setIndex] = React.useState(0);
@@ -53,9 +52,6 @@ const Home = () => {
 			navigationState={{ index, routes }}
 			onIndexChange={setIndex}
 			renderScene={renderScene}
-			barStyle={{
-				backgroundColor: myTheme.colors.secondary,
-			}}
 		/>
 	);
 };

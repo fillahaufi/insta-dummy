@@ -13,13 +13,13 @@ import { MD3Theme } from "react-native-paper/lib/typescript/types";
 
 const myTheme: MD3Theme = {
   ...DefaultTheme,
-  roundness: 2,
+//   roundness: 2,
   colors: {
     ...DefaultTheme.colors,
     primary: 'rgb(204, 214, 166)',
     onPrimary: 'rgb(82, 87, 65)',
-    // primaryContainer: 'rgb(244, 234, 213)',
-    // onPrimaryContainer: 'rgb(82, 87, 65)',
+    primaryContainer: 'rgb(244, 234, 213)',
+    onPrimaryContainer: 'rgb(82, 87, 65)',
     secondary: 'rgb(218, 226, 182)',
     onSecondary: 'rgb(82, 87, 65)',
     secondaryContainer: 'rgb(204, 214, 166)',
@@ -27,10 +27,19 @@ const myTheme: MD3Theme = {
     tertiary: 'rgb(244, 234, 213)',
     onTertiary: 'rgb(82, 87, 65)',
     tertiaryContainer: 'rgb(255, 251, 233)',
+    onTertiaryContainer: 'rgb(82, 87, 65)',
     background: 'rgb(255, 251, 233)',
     onBackground: 'rgb(82, 87, 65)',
     surface: 'rgb(255, 251, 233)',
     onSurface: 'rgb(82, 87, 65)',
+    elevation: {
+        level0: 'transparent',
+        level1: 'rgb(252, 244, 230)',
+        level2: 'rgb(244, 234, 213)',
+        level3: 'rgb(244, 234, 213)',
+        level4: 'rgb(244, 234, 213)',
+        level5: 'rgb(244, 234, 213)',
+    }
   },
 };
 
