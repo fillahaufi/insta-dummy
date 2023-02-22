@@ -14,10 +14,14 @@ type Item = {
 
 const Profile = () => {
 	const [dataSource, setDataSource] = useState<Item>([]);
-	const [loading, setLoading] = useState<boolean>(false); // Set loading state to false by default
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		generateItems();
+
+		return () => {
+			setDataSource([]);
+		};
 	}, []);
 
 	async function generateItems() {
@@ -37,7 +41,7 @@ const Profile = () => {
 		} catch (error) {
 			console.error(error);
 		} finally {
-			setLoading(false); // Set loading state to false
+			setLoading(false);
 		}
 	}
 

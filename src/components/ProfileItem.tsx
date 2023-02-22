@@ -16,7 +16,7 @@ const ProfileItem: React.FC<Props> = (props) => {
 				<Card.Cover source={{ uri: props.src }} />
 			</Card>
 			<View className="absolute bottom-2 right-2 flex flex-col">
-				<View className="flex flex-row">
+				<View className="flex flex-row justify-end">
 					<Text className="text-white">{props.likes}</Text>
 					<Avatar.Icon
 						className=""
@@ -27,7 +27,7 @@ const ProfileItem: React.FC<Props> = (props) => {
 						}}
 					/>
 				</View>
-				<View className="flex flex-row">
+				<View className="flex flex-row justify-end">
 					<Text className="text-white">{props.comments}</Text>
 					<Avatar.Icon
 						className=""

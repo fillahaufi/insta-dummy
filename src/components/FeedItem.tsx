@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { Avatar, Card, FAB, Text } from "react-native-paper";
 import myTheme from "../styles/global";
 
 interface FeedItemProps {
+	post: Post;
 	handlePress: () => void;
 }
 
 const FeedItem: React.FC<FeedItemProps> = (props) => {
+	const [userImg, setUserImg] = React.useState("asset:/avatar.png");
+	const [postImg, setPostImg] = React.useState("asset:/avatar.png");
+
+	useEffect(() => {
+		getImg(props.post.user_img).then((res) => setUserImg(res));
+		getImg(props.post.img).then((res) => setPostImg(res));
+	}, []);
+
+	const getImg = async (url: string) => {
+		const res = await fetch(url).then((res) => res.url);
+		return res;
+	};
+
 	const leftContent = () => (
-		<Avatar.Image size={40} source={{ uri: "https://picsum.photos/700" }} />
+		<Avatar.Image size={40} source={{ uri: userImg }} />
 	);
+
+	const getLikesNum = () => {
+		return props.post.likes.length;
+	};
+
+	const getCommentsNum = () => {
+		return props.post.comments.length;
+	};
+
 	return (
 		<Card
 			className="w-full my-1"
@@ -21,11 +44,11 @@ const FeedItem: React.FC<FeedItemProps> = (props) => {
 			}}
 		>
 			<Card.Title
-				title="Username"
-				subtitle={"lalala"}
+				title={props.post.username}
+				subtitle={props.post.location}
 				left={leftContent}
 			/>
-			<Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+			<Card.Cover source={{ uri: postImg }} />
 			<View className="flex flex-row justify-center mx-3 -mt-5">
 				<FAB
 					size="small"
@@ -60,14 +83,14 @@ const FeedItem: React.FC<FeedItemProps> = (props) => {
 				/>
 			</View>
 			<Card.Content className="mt-3">
-				<Text variant="bodyMedium">Card content</Text>
+				<Text variant="bodyMedium">{props.post.desc}</Text>
 				<View className="flex flex-row mt-5">
 					<Text variant="bodyMedium" className="ml-auto">
-						0
+						{getLikesNum()}
 					</Text>
 					<Text variant="bodyMedium"> Likes</Text>
 					<Text variant="bodyMedium" className="ml-4">
-						0
+						{getCommentsNum()}
 					</Text>
 					<Text variant="bodyMedium"> Comments</Text>
 				</View>

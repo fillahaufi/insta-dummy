@@ -3,6 +3,8 @@ import { BottomNavigation } from "react-native-paper";
 import Feed from "./Feed";
 import Profile from "./Profile";
 import Search from "./Search";
+import Notification from "./Notification";
+import AddPost from "./AddPost";
 
 const Home = () => {
 	const [index, setIndex] = React.useState(0);
@@ -42,8 +44,8 @@ const Home = () => {
 	const renderScene = BottomNavigation.SceneMap({
 		home: Feed,
 		search: Search,
-		add: Feed,
-		heart: Feed,
+		add: AddPost,
+		heart: Notification,
 		profile: Profile,
 	});
 

@@ -47,7 +47,7 @@ const Login: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
 					}}
 				>
 					<TextInput
-						label="Email"
+						label="Username"
 						className="mt-10"
 						mode="outlined"
 					/>

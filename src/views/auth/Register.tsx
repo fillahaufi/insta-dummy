@@ -43,7 +43,7 @@ const Register: React.FC<LoginScreenProps> = (props) => {
 					}}
 				>
 					<TextInput
-						label="Email"
+						label="Username"
 						className="mt-10"
 						mode="outlined"
 					/>
