@@ -3,6 +3,7 @@ import { FlatList, View } from "react-native";
 import { Avatar, Button, Text } from "react-native-paper";
 import ProfileItem from "../components/ProfileItem";
 import myTheme from "../styles/global";
+import ProfileItemPlaceholder from "../components/ProfileItemPlaceholder";
 
 type Item = {
 	id: number;
@@ -13,18 +14,32 @@ type Item = {
 
 const Profile = () => {
 	const [dataSource, setDataSource] = useState<Item>([]);
+	const [loading, setLoading] = useState<boolean>(false); // Set loading state to false by default
 
 	useEffect(() => {
-		let items = Array.apply(null, Array(60)).map((v, i) => {
-			return {
-				id: i,
-				src: "https://picsum.photos/700",
-				likes: Math.floor(Math.random() * 100),
-				comments: Math.floor(Math.random() * 100),
-			};
-		});
-		setDataSource(items);
+		generateItems();
 	}, []);
+
+	async function generateItems() {
+		try {
+			setLoading(true); // Set loading state to true
+			const items = await Promise.all(
+				Array.apply(null, Array(60)).map(async (v, i) => {
+					const likes = Math.floor(Math.random() * 100);
+					const comments = Math.floor(Math.random() * 100);
+					const src = await fetch("https://picsum.photos/700").then(
+						(res) => res.url
+					);
+					return { id: i, src, likes, comments };
+				})
+			);
+			setDataSource(items);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false); // Set loading state to false
+		}
+	}
 
 	return (
 		<View
@@ -62,8 +77,10 @@ const Profile = () => {
 				<Button className="m-5" mode="contained" onPress={() => {}}>
 					Edit Profile
 				</Button>
+				<ProfileItemPlaceholder isVisible={loading} />
 				<FlatList
 					data={dataSource}
+					className={`${loading ? "hidden" : ""}`}
 					renderItem={({ item }) => (
 						<ProfileItem
 							id={item.id}
