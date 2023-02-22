@@ -4,18 +4,28 @@ import { IconButton, Text } from "react-native-paper";
 import FeedItem from "../components/FeedItem";
 import myTheme from "../styles/global";
 import FeedItemPlaceholder from "../components/FeedItemPlaceholder";
+import * as Font from "expo-font";
 
 const Feed = () => {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [posts, setPosts] = React.useState<Post[]>([]);
+	const [fontsLoaded, setFontsLoaded] = React.useState<boolean>(false);
 
 	useEffect(() => {
+		loadFonts();
 		getAllPosts();
 
 		return () => {
 			setPosts([]);
 		};
 	}, []);
+
+	const loadFonts = async () => {
+		await Font.loadAsync({
+			Pacifico: require("../../assets/fonts/Pacifico.ttf"),
+		});
+		setFontsLoaded(true);
+	};
 
 	const getAllPosts = async () => {
 		try {
@@ -53,7 +63,16 @@ const Feed = () => {
 					zIndex: 10,
 				}}
 			>
-				<Text className="text-2xl font-bold mt-2">Pinstagram</Text>
+				{fontsLoaded ? (
+					<Text
+						className="text-2xl mt-3"
+						style={{
+							fontFamily: "Pacifico",
+						}}
+					>
+						Pinstagram
+					</Text>
+				) : null}
 				<IconButton
 					icon={"bookmark"}
 					iconColor={myTheme.colors.onPrimary}
