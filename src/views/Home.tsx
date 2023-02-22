@@ -6,6 +6,10 @@ import Search from "./Search";
 import Notification from "./Notification";
 import AddPost from "./AddPost";
 
+interface Props {
+	navigation: any;
+}
+
 const Home = () => {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
