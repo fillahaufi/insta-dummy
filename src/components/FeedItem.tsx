@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
-import { Avatar, Card, FAB, Text } from "react-native-paper";
+import { FlatList, View } from "react-native";
+import { Avatar, Card, FAB, Text, TextInput } from "react-native-paper";
 import myTheme from "../styles/global";
+import CommentSection from "./CommentSection";
 
 interface FeedItemProps {
 	post: Post;
@@ -83,17 +84,34 @@ const FeedItem: React.FC<FeedItemProps> = (props) => {
 				/>
 			</View>
 			<Card.Content className="mt-3">
-				<Text variant="bodyMedium">{props.post.desc}</Text>
-				<View className="flex flex-row mt-5">
-					<Text variant="bodyMedium" className="ml-auto">
+				<View className="flex flex-row mb-1">
+					<Text variant="bodyMedium" className="">
 						{getLikesNum()}
 					</Text>
 					<Text variant="bodyMedium"> Likes</Text>
-					<Text variant="bodyMedium" className="ml-4">
+					{/* <Text variant="bodyMedium" className="ml-4">
 						{getCommentsNum()}
 					</Text>
-					<Text variant="bodyMedium"> Comments</Text>
+					<Text variant="bodyMedium"> Comments</Text> */}
 				</View>
+				<Text className="mb-4 text-lg" variant="bodyMedium">
+					{props.post.desc}
+				</Text>
+				<FlatList
+					data={props.post.comments}
+					renderItem={({ item }) => (
+						<CommentSection
+							username={item.username}
+							desc={item.msg}
+						/>
+					)}
+				/>
+				<TextInput
+					label="Add a comment..."
+					mode="outlined"
+					outlineColor={myTheme.colors.background}
+					className="mt-3"
+				/>
 			</Card.Content>
 		</Card>
 	);

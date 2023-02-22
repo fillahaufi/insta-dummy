@@ -28,7 +28,7 @@ const Profile = () => {
 		try {
 			setLoading(true); // Set loading state to true
 			const items = await Promise.all(
-				Array.apply(null, Array(60)).map(async (v, i) => {
+				Array.apply(null, Array(30)).map(async (v, i) => {
 					const likes = Math.floor(Math.random() * 100);
 					const comments = Math.floor(Math.random() * 100);
 					const src = await fetch("https://picsum.photos/700").then(

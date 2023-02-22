@@ -19,31 +19,16 @@ declare type Post = {
 	location: string;
 	img: string;
 	desc: string;
-	likes: [
+	likes: 
 		{
 			user_id: number;
-		},
+		}[];
+	comments: 
 		{
 			user_id: number;
-		},
-		{
-			user_id: number;
-		}
-	];
-	comments: [
-		{
-			user_id: number;
+			username: string;
 			msg: string;
-		},
-		{
-			user_id: number;
-			msg: string;
-		},
-		{
-			user_id: number;
-			msg: string;
-		}
-	];
+		}[];
 };
 
 declare type AllPostResponse = {
