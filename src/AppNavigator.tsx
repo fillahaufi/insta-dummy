@@ -12,7 +12,7 @@ const AppNavigator = () => {
 	return (
 		<NavigationContainer>
 			<Navigator initialRouteName="Login">
-				<Screen
+				{/* <Screen
 					name="Login"
 					component={Login}
 					options={{
@@ -25,7 +25,7 @@ const AppNavigator = () => {
 					options={{
 						headerShown: false,
 					}}
-				/>
+				/> */}
 				<Screen
 					name="Home"
 					component={Home}
